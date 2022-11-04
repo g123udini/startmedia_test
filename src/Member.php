@@ -64,4 +64,9 @@ class Member
     {
         return $this->attempts;
     }
+
+    public function getScoreSum()
+    {
+        return array_sum($this->attempts);
+    }
 }
