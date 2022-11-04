@@ -1,0 +1,35 @@
+table {
+    border: 3px solid grey;
+    background: linear-gradient(to right, #F6EFD2, #CEAD78);
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+
+th {
+    border: 1px solid grey;
+}
+
+td {
+    border: 1px solid grey;
+}
+
+caption {
+    caption-side: bottom;
+    text-align: right;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+a {
+    background-image: linear-gradient(brown 50%, brown 50%), linear-gradient(silver 50%, silver 50%);
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: 0 2px, 100% 2px;
+    color: black;
+    transition: .5s ease-in-out;
+}
+
+a:hover {
+    background-size: 100% 2px, 100% 2px;
+    color: brown;
+}

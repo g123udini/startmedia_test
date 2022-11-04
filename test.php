@@ -24,9 +24,11 @@ foreach ($members_data_array as $memberInfo) {
 <head>
     <meta charset="UTF-8">
     <title>Таблица участников</title>
+    <link rel="stylesheet" href="test.css">
 </head>
 <body>
 <table>
+    <caption>Таблица участников заезда</caption>
     <tr>
         <th>Место</th>
         <th>Имя</th>
