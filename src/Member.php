@@ -78,23 +78,4 @@ class Member
         return array_sum($this->attempts);
     }
 
-    public function getFirstAttempt(): int
-    {
-        return $this->attempts[0];
-    }
-
-    public function getSecondAttempt(): int
-    {
-        return $this->attempts[1];
-    }
-
-    public function getThirdAttempt(): int
-    {
-        return $this->attempts[2];
-    }
-
-    public function getFourthAttempt(): int
-    {
-        return $this->attempts[3];
-    }
 }

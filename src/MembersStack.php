@@ -14,24 +14,13 @@ class MembersStack
     }
 
     /**
-     * Сортирует участника по запросу
+     * Сортирует участников по запросу
      * @param string $get Запрос sort из строки запроса
      * @return array|void
      */
     public function getSortByQuery(string $get): ?array
     {
-        switch ($get) {
-            case 'first':
-                return $this->getSortedMembersByFirstAttempt();
-            case 'second':
-                return $this->getSortedMembersBySecondAttempt();
-            case 'third':
-                return $this->getSortedMembersByThirdAttempt();
-            case 'fourth':
-                return $this->getSortedMembersByFourthAttempt();
-            case 'sum':
-                return $this->getSortedMembersByScoreSum();
-        }
+        return $get === 'sum' ? $this->getSortedMembersByScoreSum() : $this->getSortedMembersByAttempt($get - 1);
     }
 
     /**
@@ -48,41 +37,16 @@ class MembersStack
         return $this->members;
     }
 
-    private function getSortedMembersByFirstAttempt(): array
+    /**
+     * Сортирует участников по номеру переданой попытки
+     * @param int $i Номер попытки передаваемый из запроса
+     * @return array Отсортированные по очкам попытки
+     */
+    private function getSortedMembersByAttempt(int $i): array
     {
-        usort($this->members, function ($member1, $member2) {
-            if($member1->getFirstAttempt() == $member2->getFirstAttempt()) return 0;
-            return ($member1->getFirstAttempt() > $member2->getFirstAttempt()) ? -1 : 1;
-        });
-
-        return $this->members;
-    }
-
-    private function getSortedMembersBySecondAttempt(): array
-    {
-        usort($this->members, function ($member1, $member2) {
-            if($member1->getSecondAttempt() == $member2->getSecondAttempt()) return 0;
-            return ($member1->getSecondAttempt() > $member2->getSecondAttempt()) ? -1 : 1;
-        });
-
-        return $this->members;
-    }
-
-    private function getSortedMembersByThirdAttempt(): array
-    {
-        usort($this->members, function ($member1, $member2) {
-            if($member1->getThirdAttempt() == $member2->getThirdAttempt()) return 0;
-            return ($member1->getThirdAttempt() > $member2->getThirdAttempt()) ? -1 : 1;
-        });
-
-        return $this->members;
-    }
-
-    private function getSortedMembersByFourthAttempt(): array
-    {
-        usort($this->members, function ($member1, $member2) {
-            if($member1->getFourthAttempt() == $member2->getFourthAttempt()) return 0;
-            return ($member1->getFourthAttempt() > $member2->getFourthAttempt()) ? -1 : 1;
+        usort($this->members, function ($member1, $member2) use ($i) {
+            if($member1->getAttempts()[$i] == $member2->getAttempts()[$i]) return 0;
+            return ($member1->getAttempts()[$i] > $member2->getAttempts()[$i]) ? -1 : 1;
         });
 
         return $this->members;
