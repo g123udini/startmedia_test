@@ -16,6 +16,11 @@ class Member
         $this->car = $car;
     }
 
+    /**
+     * Загружает заезды в участника
+     * @param array $attempts_array Массив заездов из файла
+     * @return void
+     */
     public function loadAttempts($attempts_array)
     {
         foreach ($attempts_array as $attempt) {
@@ -26,7 +31,7 @@ class Member
     }
 
     /**
-     * @return string
+     * @return string Имя участника
      */
     public function getName(): string
     {
@@ -34,7 +39,7 @@ class Member
     }
 
     /**
-     * @return string
+     * @return string Город участника
      */
     public function getCity(): string
     {
@@ -42,7 +47,7 @@ class Member
     }
 
     /**
-     * @return string
+     * @return string Id участника
      */
     public function getId(): string
     {
@@ -50,7 +55,7 @@ class Member
     }
 
     /**
-     * @return string
+     * @return string Машина участника
      */
     public function getCar(): string
     {
@@ -58,15 +63,38 @@ class Member
     }
 
     /**
-     * @return array
+     * @return array Массиво попыток участника
      */
     public function getAttempts(): array
     {
         return $this->attempts;
     }
 
-    public function getScoreSum()
+    /**
+     * @return int Сумма очков участника
+     */
+    public function getScoreSum(): int
     {
         return array_sum($this->attempts);
+    }
+
+    public function getFirstAttempt(): int
+    {
+        return $this->attempts[0];
+    }
+
+    public function getSecondAttempt(): int
+    {
+        return $this->attempts[1];
+    }
+
+    public function getThirdAttempt(): int
+    {
+        return $this->attempts[2];
+    }
+
+    public function getFourthAttempt(): int
+    {
+        return $this->attempts[3];
     }
 }

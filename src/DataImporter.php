@@ -2,7 +2,13 @@
 
 class DataImporter
 {
-    public function importFiles($fileName)
+    /**
+     * Импортирует данные в формате json из файлов
+     * @param string $fileName Путь к файлу
+     * @return array Данные из файла в формате массива
+     * @throws SourceFileException
+     */
+    public function importFiles($fileName): array
     {
         try {
             $json = file_get_contents($fileName);
