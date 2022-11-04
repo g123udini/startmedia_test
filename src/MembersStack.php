@@ -15,11 +15,14 @@ class MembersStack
 
     /**
      * Сортирует участников по запросу
-     * @param string $get Запрос sort из строки запроса
+     * @param ?string $get Запрос sort из строки запроса
      * @return array|void
      */
-    public function getSortByQuery(string $get): ?array
+    public function getSortByQuery(?string $get): ?array
     {
+        if ($get === null) {
+            return $this->getSortedMembersByScoreSum();
+        }
         return $get === 'sum' ? $this->getSortedMembersByScoreSum() : $this->getSortedMembersByAttempt($get - 1);
     }
 

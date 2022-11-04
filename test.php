@@ -43,7 +43,7 @@ foreach ($members_data_array as $memberInfo) {
     </tr>
     <?php
     $i = 1;
-    foreach ($membersStack->getSortByQuery($_GET['sort']) as $member):?>
+    foreach ($membersStack->getSortByQuery($_GET['sort'] ?? null) as $member):?>
         <tr>
             <td><?= $i++ ?></td>
             <td><?= $member->getName() ?></td>
