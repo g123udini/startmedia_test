@@ -20,6 +20,13 @@ foreach ($members_data_array as $memberInfo) {
 };
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Таблица участников</title>
+</head>
+<body>
 <table>
     <tr>
         <th>Место</th>
@@ -32,9 +39,21 @@ foreach ($members_data_array as $memberInfo) {
         <th><a href="test.php?sort=fourth">Попытка № 4</a></th>
         <th><a href="test.php?sort=sum">Сумма очков</a></th>
     </tr>
-      <?php
-      $i = 1;
-      foreach ($membersStack->getSortByQuery($_GET['sort']) as $member):?>
-    <tr><td><?= $i++ ?></td><td><?= $member->getName() ?></td><td><?= $member->getCity() ?></td><td><?= $member->getCar() ?></td><td><?= $member->getFirstAttempt() ?></td><td><?= $member->getSecondAttempt()?></td><td><?= $member->getThirdAttempt() ?></td><td><?= $member->getFourthAttempt() ?></td><td><?= $member->getScoreSum() ?></td></tr>
-      <?php endforeach; ?>
+    <?php
+    $i = 1;
+    foreach ($membersStack->getSortByQuery($_GET['sort']) as $member):?>
+        <tr>
+            <td><?= $i++ ?></td>
+            <td><?= $member->getName() ?></td>
+            <td><?= $member->getCity() ?></td>
+            <td><?= $member->getCar() ?></td>
+            <td><?= $member->getFirstAttempt() ?></td>
+            <td><?= $member->getSecondAttempt() ?></td>
+            <td><?= $member->getThirdAttempt() ?></td>
+            <td><?= $member->getFourthAttempt() ?></td>
+            <td><?= $member->getScoreSum() ?></td>
+        </tr>
+    <?php endforeach; ?>
 </table>
+</body>
+</html>
