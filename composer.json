@@ -1,0 +1,16 @@
+{
+    "name": "g123udini/test-junior-master",
+    "description": "junior test",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "TestJuniorMaster\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "g123udini"
+        }
+    ],
+    "require": {}
+}

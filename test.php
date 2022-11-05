@@ -1,12 +1,16 @@
 <?php
-require_once 'src/DataImporter.php';
-require_once 'src/Member.php';
-require_once 'src/MembersPool.php';
+
+use TestJuniorMaster\DataImporter;
+use TestJuniorMaster\Exception\SourceFileException;
+use TestJuniorMaster\Member;
+use TestJuniorMaster\MembersPool;
+
+require_once 'vendor/autoload.php';
 
 $importer = new DataImporter();
 try {
-    $attemptsArray = $importer->importFiles('data_attempts.json');
-    $membersDataArray = $importer->importFiles('data_cars.json');
+    $attemptsArray = $importer->importFiles('testData/data_attempts.json');
+    $membersDataArray = $importer->importFiles('testData/data_cars.json');
 } catch (SourceFileException $exception) {
     throw new SourceFileException('Загрузить данные из файлов не удалось');
 }

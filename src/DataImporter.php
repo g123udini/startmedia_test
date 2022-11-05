@@ -1,5 +1,9 @@
 <?php
 
+namespace TestJuniorMaster;
+
+use TestJuniorMaster\Exception\SourceFileException;
+
 class DataImporter
 {
     /**
