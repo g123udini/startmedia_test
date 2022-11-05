@@ -1,6 +1,6 @@
 <?php
 
-class MembersStack
+class MembersPool
 {
     private array $members;
 
@@ -15,10 +15,10 @@ class MembersStack
 
     /**
      * Сортирует участников по запросу
-     * @param ?string $get Запрос sort из строки запроса
+     * @param mixed $get Запрос sort из строки запроса
      * @return array|void
      */
-    public function getSortByQuery(?string $get): ?array
+    public function getSortByQuery(mixed $get): ?array
     {
         if ($get === null) {
             return $this->getSortedMembersByScoreSum();
@@ -33,8 +33,8 @@ class MembersStack
     private function getSortedMembersByScoreSum(): array
     {
         usort($this->members, function ($member1, $member2) {
-            if($member1->getScoreSum() == $member2->getScoreSum()) return 0;
-            return ($member1->getScoreSum() > $member2->getScoreSum()) ? -1 : 1;
+
+            return $member2->getScoreSum() <=> $member1->getScoreSum();
         });
 
         return $this->members;
@@ -48,8 +48,8 @@ class MembersStack
     private function getSortedMembersByAttempt(int $i): array
     {
         usort($this->members, function ($member1, $member2) use ($i) {
-            if($member1->getAttempts()[$i] == $member2->getAttempts()[$i]) return 0;
-            return ($member1->getAttempts()[$i] > $member2->getAttempts()[$i]) ? -1 : 1;
+
+            return $member2->getAttempts()[$i] <=> $member1->getAttempts()[$i];
         });
 
         return $this->members;

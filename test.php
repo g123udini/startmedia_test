@@ -1,7 +1,7 @@
 <?php
 require_once 'src/DataImporter.php';
 require_once 'src/Member.php';
-require_once 'src/MembersStack.php';
+require_once 'src/MembersPool.php';
 
 $importer = new DataImporter();
 try {
@@ -11,11 +11,15 @@ try {
     throw new SourceFileException('Загрузить данные из файлов не удалось');
 }
 
-$membersStack = new MembersStack();
+$membersStack = new MembersPool();
+
+$memberId_results_array = [];
+foreach ($attempts_array as $attempt) {
+    $memberId_results_array[$attempt['id']][] = $attempt['result'];
+}
 
 foreach ($members_data_array as $memberInfo) {
-    $member = new Member($memberInfo['id'], $memberInfo['name'], $memberInfo['city'], $memberInfo['car']);
-    $member->loadAttempts($attempts_array);
+    $member = new Member($memberInfo['id'], $memberInfo['name'], $memberInfo['city'], $memberInfo['car'], $memberId_results_array[$memberInfo['id']]);
     $membersStack->setMember($member);
 };
 ?>

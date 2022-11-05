@@ -8,26 +8,13 @@ class Member
     private string $car;
     private array $attempts = [];
 
-    public function __construct($id, $name, $city, $car)
+    public function __construct($id, $name, $city, $car, $attempts)
     {
         $this->id = $id;
         $this->name = $name;
         $this->city = $city;
         $this->car = $car;
-    }
-
-    /**
-     * Загружает заезды в участника
-     * @param array $attempts_array Массив заездов из файла
-     * @return void
-     */
-    public function loadAttempts($attempts_array)
-    {
-        foreach ($attempts_array as $attempt) {
-            if ($this->id == $attempt['id']) {
-                $this->attempts[] = $attempt['result'];
-            }
-        }
+        $this->attempts = $attempts;
     }
 
     /**
