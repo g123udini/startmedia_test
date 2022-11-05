@@ -5,22 +5,22 @@ require_once 'src/MembersPool.php';
 
 $importer = new DataImporter();
 try {
-    $attempts_array = $importer->importFiles('data_attempts.json');
-    $members_data_array = $importer->importFiles('data_cars.json');
+    $attemptsArray = $importer->importFiles('data_attempts.json');
+    $membersDataArray = $importer->importFiles('data_cars.json');
 } catch (SourceFileException $exception) {
     throw new SourceFileException('Загрузить данные из файлов не удалось');
 }
 
-$membersStack = new MembersPool();
+$membersPool = new MembersPool();
 
-$memberId_results_array = [];
-foreach ($attempts_array as $attempt) {
-    $memberId_results_array[$attempt['id']][] = $attempt['result'];
+$membersResultsById = [];
+foreach ($attemptsArray as $attempt) {
+    $membersResultsById[$attempt['id']][] = $attempt['result'];
 }
 
-foreach ($members_data_array as $memberInfo) {
-    $member = new Member($memberInfo['id'], $memberInfo['name'], $memberInfo['city'], $memberInfo['car'], $memberId_results_array[$memberInfo['id']]);
-    $membersStack->setMember($member);
+foreach ($membersDataArray as $memberInfo) {
+    $member = new Member($memberInfo['id'], $memberInfo['name'], $memberInfo['city'], $memberInfo['car'], $membersResultsById[$memberInfo['id']]);
+    $membersPool->setMember($member);
 };
 ?>
 <!DOCTYPE html>
@@ -47,7 +47,7 @@ foreach ($members_data_array as $memberInfo) {
     </tr>
     <?php
     $i = 1;
-    foreach ($membersStack->getSortByQuery($_GET['sort'] ?? null) as $member):?>
+    foreach ($membersPool->getSortByQuery($_GET['sort'] ?? null) as $member):?>
         <tr>
             <td><?= $i++ ?></td>
             <td><?= $member->getName() ?></td>
