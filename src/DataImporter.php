@@ -3,11 +3,12 @@
 namespace TestJuniorMaster;
 
 use TestJuniorMaster\Exception\SourceFileException;
+use Throwable;
 
 class DataImporter
 {
     /**
-     * Импортирует данные в формате json из файлов
+     * Импортирует данные из json файлов
      * @param string $fileName Путь к файлу
      * @return array Данные из файла в формате массива
      * @throws SourceFileException
@@ -23,5 +24,6 @@ class DataImporter
 
         return $data;
     }
+
 
 }
