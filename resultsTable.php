@@ -45,9 +45,9 @@ foreach ($membersDataArray as $memberInfo) {
         <?php
         $i = 1;
         foreach ($member->getAttempts() as $attempt): ?>
-            <th><a href="test.php?sort=<?= $i ?>">Попытка № <?= $i++ ?></a></a></th>
+            <th><a href="resultsTable.php?sort=<?= $i ?>">Попытка № <?= $i++ ?></a></a></th>
         <?php endforeach; ?>
-        <th><a href="test.php?sort=sum">Сумма очков</a></th>
+        <th><a href="resultsTable.php?sort=sum">Сумма очков</a></th>
     </tr>
     <?php
     $i = 1;
