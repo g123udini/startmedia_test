@@ -9,23 +9,13 @@ require_once 'vendor/autoload.php';
 
 $importer = new DataImporter();
 try {
-    $attemptsArray = $importer->importFiles('testData/data_attempts.json');
-    $membersDataArray = $importer->importFiles('testData/data_cars.json');
+    $importer->importMembersResults('testData/data_attempts.json');
+    $importer->importMembersInfo('testData/data_cars.json');
 } catch (SourceFileException $exception) {
     throw new SourceFileException('Загрузить данные из файлов не удалось');
 }
 
-$membersPool = new MembersPool();
-
-$membersResultsById = [];
-foreach ($attemptsArray as $attempt) {
-    $membersResultsById[$attempt['id']][] = $attempt['result'];
-}
-
-foreach ($membersDataArray as $memberInfo) {
-    $member = new Member($memberInfo['id'], $memberInfo['name'], $memberInfo['city'], $memberInfo['car'], $membersResultsById[$memberInfo['id']]);
-    $membersPool->setMember($member);
-};
+$membersPool = $importer->getMembersPool();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,10 +33,9 @@ foreach ($membersDataArray as $memberInfo) {
         <th>Город</th>
         <th>Машина</th>
         <?php
-        $i = 1;
-        foreach ($member->getAttempts() as $attempt): ?>
-            <th><a href="resultsTable.php?sort=<?= $i ?>">Попытка № <?= $i++ ?></a></a></th>
-        <?php endforeach; ?>
+        for ($i = 1; $i <= $membersPool->getFirstMember()->getAttemptsCount(); $i++): ?>
+            <th><a href="resultsTable.php?sort=<?= $i ?>">Попытка № <?= $i ?></a></a></th>
+        <?php endfor; ?>
         <th><a href="resultsTable.php?sort=sum">Сумма очков</a></th>
     </tr>
     <?php

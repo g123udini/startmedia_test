@@ -51,11 +51,19 @@ class Member
     }
 
     /**
-     * @return array Массиво попыток участника
+     * @return array Массив попыток участника
      */
     public function getAttempts(): array
     {
         return $this->attempts;
+    }
+
+    /**
+     * @return int Возвращает количество попыток участника
+     */
+    public function getAttemptsCount(): int
+    {
+        return count($this->attempts);
     }
 
     /**

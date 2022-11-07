@@ -15,6 +15,15 @@ class MembersPool
     }
 
     /**
+     * Получить первого участника из списка
+     * @return Member
+     */
+    public function getFirstMember(): Member
+    {
+        return $this->members[0];
+    }
+
+    /**
      * Сортирует участников по запросу
      * @param mixed $get Запрос sort из строки запроса
      * @return array|void
