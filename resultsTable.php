@@ -2,8 +2,6 @@
 
 use TestJuniorMaster\DataImporter;
 use TestJuniorMaster\Exception\SourceFileException;
-use TestJuniorMaster\Member;
-use TestJuniorMaster\MembersPool;
 
 require_once 'vendor/autoload.php';
 

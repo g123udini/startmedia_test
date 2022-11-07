@@ -71,7 +71,4 @@ class DataImporter
 
         return $data;
     }
-
-
-
 }
