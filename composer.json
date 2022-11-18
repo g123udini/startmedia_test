@@ -1,6 +1,5 @@
 {
-    "name": "g123udini/test-junior-master",
-    "description": "junior test",
+    "name": "g123udini/startmedia_test",
     "type": "project",
     "autoload": {
         "psr-4": {
@@ -9,7 +8,8 @@
     },
     "authors": [
         {
-            "name": "g123udini"
+            "name": "g123udini",
+            "email": "g123udini@gmail.com"
         }
     ],
     "require": {}
