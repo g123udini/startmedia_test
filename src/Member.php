@@ -74,4 +74,12 @@ class Member
         return array_sum($this->attempts);
     }
 
+    /**
+     * Добавляет пустой результат заезда
+     * @return void
+     */
+    public function addEmptyAttempt(): void
+    {
+        $this->attempts[] = 0;
+    }
 }

@@ -24,6 +24,37 @@ class MembersPool
     }
 
     /**
+     * Узнать максимальное количество попыток
+     * @return int
+     */
+    public function getMaxAttemptsCount(): int
+    {
+        $maxAttemptsCount = 0;
+        foreach ($this->members as $member) {
+            if ($maxAttemptsCount < $member->getAttemptsCount()) {
+                $maxAttemptsCount = $member->getAttemptsCount();
+            }
+        }
+
+        return $maxAttemptsCount;
+    }
+
+    /**
+     * Добавляет участникам, которые не участвовали в доп. заездах 0
+     * @return void
+     */
+    public function standardizeAttempts(): void
+    {
+        $maxAttemptsCount = $this->getMaxAttemptsCount();
+
+        foreach ($this->members as $member) {
+            if ($maxAttemptsCount > $member->getAttemptsCount()) {
+                $member->addEmptyAttempt();
+            }
+        }
+    }
+
+    /**
      * Сортирует участников по запросу
      * @param mixed $get Запрос sort из строки запроса
      * @return array|void

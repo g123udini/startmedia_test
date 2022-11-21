@@ -14,6 +14,7 @@ try {
 }
 
 $membersPool = $importer->getMembersPool();
+$membersPool->standardizeAttempts();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,10 +32,10 @@ $membersPool = $importer->getMembersPool();
         <th>Город</th>
         <th>Машина</th>
         <?php
-        for ($i = 1; $i <= $membersPool->getFirstMember()->getAttemptsCount(); $i++): ?>
-            <th><a href="resultsTable.php?sort=<?= $i ?>">Попытка № <?= $i ?></a></a></th>
+        for ($i = 1; $i <= $membersPool->getMaxAttemptsCount(); $i++): ?>
+            <th><a href="index.php?sort=<?= $i ?>">Попытка № <?= $i ?></a></a></th>
         <?php endfor; ?>
-        <th><a href="resultsTable.php?sort=sum">Сумма очков</a></th>
+        <th><a href="index.php?sort=sum">Сумма очков</a></th>
     </tr>
     <?php
     $i = 1;
